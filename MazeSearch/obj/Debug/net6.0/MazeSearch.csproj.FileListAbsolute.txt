@@ -1,0 +1,15 @@
+C:\Learning\cSharp\maze-search-csharp\MazeSearch\bin\Debug\net6.0\MazeSearch.exe
+C:\Learning\cSharp\maze-search-csharp\MazeSearch\bin\Debug\net6.0\MazeSearch.deps.json
+C:\Learning\cSharp\maze-search-csharp\MazeSearch\bin\Debug\net6.0\MazeSearch.runtimeconfig.json
+C:\Learning\cSharp\maze-search-csharp\MazeSearch\bin\Debug\net6.0\MazeSearch.dll
+C:\Learning\cSharp\maze-search-csharp\MazeSearch\bin\Debug\net6.0\ref\MazeSearch.dll
+C:\Learning\cSharp\maze-search-csharp\MazeSearch\bin\Debug\net6.0\MazeSearch.pdb
+C:\Learning\cSharp\maze-search-csharp\MazeSearch\obj\Debug\net6.0\MazeSearch.csproj.AssemblyReference.cache
+C:\Learning\cSharp\maze-search-csharp\MazeSearch\obj\Debug\net6.0\MazeSearch.GeneratedMSBuildEditorConfig.editorconfig
+C:\Learning\cSharp\maze-search-csharp\MazeSearch\obj\Debug\net6.0\MazeSearch.AssemblyInfoInputs.cache
+C:\Learning\cSharp\maze-search-csharp\MazeSearch\obj\Debug\net6.0\MazeSearch.AssemblyInfo.cs
+C:\Learning\cSharp\maze-search-csharp\MazeSearch\obj\Debug\net6.0\MazeSearch.csproj.CoreCompileInputs.cache
+C:\Learning\cSharp\maze-search-csharp\MazeSearch\obj\Debug\net6.0\MazeSearch.dll
+C:\Learning\cSharp\maze-search-csharp\MazeSearch\obj\Debug\net6.0\ref\MazeSearch.dll
+C:\Learning\cSharp\maze-search-csharp\MazeSearch\obj\Debug\net6.0\MazeSearch.pdb
+C:\Learning\cSharp\maze-search-csharp\MazeSearch\obj\Debug\net6.0\MazeSearch.genruntimeconfig.cache
