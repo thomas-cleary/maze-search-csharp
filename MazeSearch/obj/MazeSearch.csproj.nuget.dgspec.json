@@ -1,25 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "/mnt/c/Learning/cSharp/maze-search-csharp/MazeSearch/MazeSearch.csproj": {}
+    "C:\\Learning\\cSharp\\maze-search-csharp\\MazeSearch\\MazeSearch.csproj": {}
   },
   "projects": {
-    "/mnt/c/Learning/cSharp/maze-search-csharp/MazeSearch/MazeSearch.csproj": {
+    "C:\\Learning\\cSharp\\maze-search-csharp\\MazeSearch\\MazeSearch.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/mnt/c/Learning/cSharp/maze-search-csharp/MazeSearch/MazeSearch.csproj",
+        "projectUniqueName": "C:\\Learning\\cSharp\\maze-search-csharp\\MazeSearch\\MazeSearch.csproj",
         "projectName": "MazeSearch",
-        "projectPath": "/mnt/c/Learning/cSharp/maze-search-csharp/MazeSearch/MazeSearch.csproj",
-        "packagesPath": "/home/tomclearyrac/.nuget/packages/",
-        "outputPath": "/mnt/c/Learning/cSharp/maze-search-csharp/MazeSearch/obj/",
+        "projectPath": "C:\\Learning\\cSharp\\maze-search-csharp\\MazeSearch\\MazeSearch.csproj",
+        "packagesPath": "C:\\Users\\tc10444\\.nuget\\packages\\",
+        "outputPath": "C:\\Learning\\cSharp\\maze-search-csharp\\MazeSearch\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/tomclearyrac/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\tc10444\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -58,7 +60,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.100/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }
