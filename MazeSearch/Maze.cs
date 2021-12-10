@@ -1,5 +1,3 @@
-using System;
-
 public class Maze
 {
     public int[,] maze;
@@ -14,9 +12,9 @@ public class Maze
         maze = GetNewMaze();
     }
 
-    private int[,] GetNewMaze()
+    public int[,] GetNewMaze()
     {
-       int[,] newMaze = new int[Constants.NumRows, Constants.NumCols]; 
+       int[,] newMaze = new int[numRows, numCols]; 
 
        for (int rowNum = 0; rowNum < numRows; rowNum++)
        {
