@@ -55,7 +55,6 @@ class Program
             for (int colNum = 0; colNum < maze.numRows; colNum++)
             {
                 MazeTileNum tile = (MazeTileNum) maze.maze[rowNum, colNum];
-
                 switch (tile)
                 {
                     case MazeTileNum.Undiscovered:
@@ -65,7 +64,6 @@ class Program
             }
             AddString("\n");
         }
-
         NCurses.Refresh();
     }
 

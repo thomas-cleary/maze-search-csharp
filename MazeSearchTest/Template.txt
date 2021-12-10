@@ -1,0 +1,21 @@
+using NUnit.Framework;
+
+namespace MazeSearchTest;
+
+public class Tests
+{
+    [SetUp]
+    public void Setup()
+    {
+    }
+
+    [Test]
+    public void Test()
+    {
+        // Arrange
+
+        // Act
+
+        // Assert
+    }
+}
