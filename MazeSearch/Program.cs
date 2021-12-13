@@ -115,7 +115,7 @@ class Program
             maze.GenerateNewOpenMaze();
             DisplayMaze(maze);
         }
-        MySleep(5000);
+        MySleep(Constants.IntermissionTime);
     }
 
     private static void MyRefresh()
