@@ -6,7 +6,6 @@ class Program
 {
     static void Main(string[] args)
     {
-        Maze maze = new Maze(Constants.NumRows, Constants.NumCols);
         IntPtr screen = NCurses.InitScreen(); // Not sure if this is needed as member variable
 
         if(!InitColors())
@@ -65,6 +64,10 @@ class Program
 
                     case MazeTileNum.Wall:
                         AddString(MazeTileChar.Wall, (short) MazeTileNum.Wall);
+                        break;
+
+                    case MazeTileNum.Goal:
+                        AddString(MazeTileChar.Goal, (short) MazeTileNum.Goal);
                         break;
 
                     default:

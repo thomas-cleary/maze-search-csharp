@@ -129,6 +129,55 @@ public class MazeTests
             }
         }
         Assert.AreEqual(wallsFound, expectedNumWalls);
+    }
 
+    [Test]
+    public void AddGoal_WithMazeDensity30_ReturnedGoalSameAsActual()
+    {
+        // Arrange
+        double density = 0.3;
+        int numRows    = 16;
+        int numCols    = numRows * 2;
+
+        (int row, int col) foundGoal = (-1, -1);
+
+        Maze testMaze = new Maze(numRows, numCols);
+        testMaze.AddWalls(density);
+
+        // Act
+        (int row, int col) returnedGoal = testMaze.AddGoal();
+ 
+        // Assert
+        for (int rowNum = 0; rowNum < numRows; rowNum++)
+        {
+            for (int colNum = 0; colNum < numCols; colNum++)
+            {
+                var currTile = testMaze.maze[rowNum, colNum];
+                if (currTile  == (int) MazeTileNum.Goal)
+                {
+                    foundGoal = (rowNum, colNum);
+                }
+            }
+            if (foundGoal.row > -1 || foundGoal.col > -1) break; // Found the goal already
+        }
+
+        // Assert
+        Assert.AreEqual(foundGoal, returnedGoal);
+
+    }
+
+    [Test]
+    public void AddGoal_WithMazeDensity100_ThrowsInvalidOperationExceptionAndMazeHasNoGoal()
+    {
+        // Arrange
+        double density = 1.0;
+        int numRows    = 16;
+        int numCols    = numRows * 2;
+
+        Maze testMaze = new Maze(numRows, numCols);
+        testMaze.AddWalls(density);
+
+        // Act / Assert
+        Assert.Throws<InvalidOperationException>(() => testMaze.AddGoal());
     }
 }
