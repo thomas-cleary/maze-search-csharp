@@ -10,6 +10,8 @@ public static class Constants
     public const int NumRows = 16; // THE WAY YOURE THINKING ABOUT ROWS AND COLS IS BACKWARDS
     public const int NumCols = 32;
 
+    public const double MazeDensity = 0.3;
+
 }
 
 

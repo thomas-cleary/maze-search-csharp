@@ -104,8 +104,10 @@ class Program
     private static void MazeSearchSim()
     {
         Maze maze = new Maze(Constants.NumRows, Constants.NumCols);
+        maze.AddWalls(Constants.MazeDensity);
+
         DisplayMaze(maze);
-        Sleep(3000);
+        Sleep(5000);
         
     }
 
