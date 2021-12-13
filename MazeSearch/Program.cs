@@ -50,11 +50,11 @@ class Program
     {
         NCurses.Erase();
 
-        for (int rowNum = 0; rowNum < maze.numRows; rowNum++)
+        for (int colNum = 0; colNum < maze.numRows; colNum++)
         {
-            for (int colNum = 0; colNum < maze.numRows; colNum++)
+            for (int rowNum = 0; rowNum < maze.numRows; rowNum++)
             {
-                MazeTileNum tile = (MazeTileNum) maze.maze[rowNum, colNum];
+                MazeTileNum tile = (MazeTileNum) maze.maze[colNum, rowNum];
 
                 switch (tile)
                 {
@@ -65,7 +65,7 @@ class Program
                     case MazeTileNum.Wall:
                         AddString(MazeTileChar.Wall, (short) MazeTileNum.Wall);
                         break;
-                        
+
                     default:
                         throw new ArgumentException(String.Format("{0} is not a valid TileNum", tile));
                 }

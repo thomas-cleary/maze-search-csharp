@@ -27,19 +27,47 @@ public class MazeTests
 
 
     [Test]
-    public void GenerateNewMaze_WithSquareMaze_ReturnsUndiscoveredMaze()
+    public void GenerateNewOpenMaze_WithSquareMaze_ReturnsUndiscoveredMaze()
     {
         // Arrange
         int dimSize = 8;
         Maze squareMaze = new Maze(dimSize, dimSize);
 
         // Act
-        int[,] returnedMaze = squareMaze.GenerateNewMaze();
+        int[,] returnedMaze = squareMaze.GenerateNewOpenMaze();
+        /* This happens on object instantiation,
+           But to test we call it again to get the returned maze
+        */
 
         // Assert
-        foreach (var tile in returnedMaze)
+        foreach (var tile in returnedMaze) // returned maze
         {
             Assert.IsTrue(tile == (int) MazeTileNum.Undiscovered);
         }
+
+        foreach (var tile in squareMaze.maze) // member variable
+        {
+            Assert.IsTrue(tile == (int) MazeTileNum.Undiscovered);
+        }
+    }
+
+
+    [Test]
+    public void AddWalls_WithDensity100_MazeShouldBeAllWall()
+    {
+        // Arrange
+        double density = 1.0;
+        int dimSize    = 4;
+        Maze testMaze  = new Maze(dimSize, dimSize);
+
+        // Act
+        testMaze.AddWalls(density);
+
+        // Assert
+        foreach (var tile in testMaze.maze) // member variable
+        {
+            Assert.IsTrue(tile == (int) MazeTileNum.Wall);
+        }
+
     }
 }
