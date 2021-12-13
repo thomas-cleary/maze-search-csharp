@@ -31,4 +31,3 @@ public enum MazeTileNum
 
     Goal         = 4
 }
-
