@@ -1,5 +1,6 @@
 public class Maze
 {
+    /// <remarks> Indexing is array[column, row] to match ncurses display output </remarks>
     public int[,] maze;
     public int    numRows;
     public int    numCols;
@@ -41,7 +42,11 @@ public class Maze
             var randRow = rand.Next(0, this.numRows);
             var randCol = rand.Next(0, this.numCols);
 
-            break;
+            if (this.maze[randCol, randRow] == (int) MazeTileNum.Undiscovered)
+            {
+                this.maze[randCol, randRow] = (int) MazeTileNum.Wall;
+                wallsAdded++;
+            }
         }
     }
 }
