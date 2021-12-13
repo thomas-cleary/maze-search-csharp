@@ -10,22 +10,22 @@ public class Maze
         this.numRows = numRows;
         this.numCols = numCols;
 
-        maze = GenerateNewOpenMaze();
+        GenerateNewOpenMaze();
     }
 
     /// <summary> Set this.maze to a new maze with no Wall tiles inserted </summary>
-    public int[,] GenerateNewOpenMaze()
+    public void GenerateNewOpenMaze()
     {
-       int[,] newMaze = new int[numCols, numRows]; 
+       int[,] newMaze = new int[numRows, numCols]; 
 
-       for (int colNum = 0; colNum < numCols; colNum++)
+       for (int rowNum = 0; rowNum < numRows; rowNum++)
        {
-           for (int rowNum = 0; rowNum < numRows; rowNum++)
+           for (int colNum = 0; colNum < numCols; colNum++)
            {
-               newMaze[colNum, rowNum] = (int) MazeTileNum.Undiscovered;
+               newMaze[rowNum, colNum] = (int) MazeTileNum.Undiscovered;
            }
        }
-       return newMaze;
+       this.maze = newMaze;
     }
 
     /// <summary> Add walls to this.maze to meet the specified density </summary>
@@ -42,9 +42,9 @@ public class Maze
             var randRow = rand.Next(0, this.numRows);
             var randCol = rand.Next(0, this.numCols);
 
-            if (this.maze[randCol, randRow] == (int) MazeTileNum.Undiscovered)
+            if (this.maze[randRow, randCol] == (int) MazeTileNum.Undiscovered)
             {
-                this.maze[randCol, randRow] = (int) MazeTileNum.Wall;
+                this.maze[randRow, randCol] = (int) MazeTileNum.Wall;
                 wallsAdded++;
             }
         }

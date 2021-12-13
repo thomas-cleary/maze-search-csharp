@@ -32,17 +32,10 @@ public class MazeTests
         Maze squareMaze = new Maze(dimSize, dimSize);
 
         // Act
-        int[,] returnedMaze = squareMaze.GenerateNewOpenMaze();
-        /* This happens on object instantiation,
-           But to test we call it again to get the returned maze
-        */
+        squareMaze.GenerateNewOpenMaze();
+
 
         // Assert
-        foreach (var tile in returnedMaze) // returned maze
-        {
-            Assert.IsTrue(tile == (int) MazeTileNum.Undiscovered);
-        }
-
         foreach (var tile in squareMaze.maze) // member variable
         {
             Assert.AreEqual(tile, (int) MazeTileNum.Undiscovered);

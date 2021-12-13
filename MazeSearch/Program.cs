@@ -6,6 +6,7 @@ class Program
 {
     static void Main(string[] args)
     {
+        Maze maze = new Maze(Constants.NumRows, Constants.NumCols);
         IntPtr screen = NCurses.InitScreen(); // Not sure if this is needed as member variable
 
         if(!InitColors())
@@ -50,11 +51,11 @@ class Program
     {
         NCurses.Erase();
 
-        for (int colNum = 0; colNum < maze.numRows; colNum++)
+        for (int rowNum = 0; rowNum < maze.numRows; rowNum++)
         {
-            for (int rowNum = 0; rowNum < maze.numRows; rowNum++)
+            for (int colNum = 0; colNum < maze.numCols; colNum++)
             {
-                MazeTileNum tile = (MazeTileNum) maze.maze[colNum, rowNum];
+                MazeTileNum tile = (MazeTileNum) maze.maze[rowNum, colNum];
 
                 switch (tile)
                 {
@@ -72,7 +73,7 @@ class Program
             }
             AddString("\n");
         }
-        NCurses.Refresh();
+        MyRefresh();
     }
 
 
@@ -80,7 +81,7 @@ class Program
     {
         NCurses.Erase();
         NCurses.AddString("Colour Pairs Could Not Be Initialised. Ending...");
-        NCurses.Refresh();
+        MyRefresh();
         NCurses.EndWin();
     }
 
@@ -103,17 +104,27 @@ class Program
 
     private static void MazeSearchSim()
     {
-        Maze maze = new Maze(Constants.NumRows, Constants.NumCols);
-        maze.AddWalls(Constants.MazeDensity);
-
-        DisplayMaze(maze);
-        Sleep(5000);
-        
+        for (int i = 0; i < 10; i++)
+        {
+            Maze maze = new Maze(Constants.NumRows, Constants.NumCols);
+            maze.AddWalls(Constants.MazeDensity);
+            DisplayMaze(maze);
+            maze.GenerateNewOpenMaze();
+            DisplayMaze(maze);
+        }
+        MySleep(5000);
     }
 
-    private static void Sleep(int milliseconds)
+    private static void MyRefresh()
     {
-        Thread.Sleep(milliseconds);
+        NCurses.Nap(Constants.AnimationSpeed);
+        NCurses.Refresh();
+    }
+
+    private static void MySleep(int milliseconds)
+    {
+        // Thread.Sleep(milliseconds);
+        NCurses.Nap(milliseconds);
     }
 
 }
