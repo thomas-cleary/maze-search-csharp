@@ -1,7 +1,7 @@
 # maze-search-csharp
 
-# Python
+## Python
 ``` python python/search.py ```
 
-C#
+## C#
 ``` ./MazeSearch $ dotnet run ```
