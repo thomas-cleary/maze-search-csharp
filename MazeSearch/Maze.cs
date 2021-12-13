@@ -9,10 +9,10 @@ public class Maze
         this.numRows = numRows;
         this.numCols = numCols;
 
-        maze = GetNewMaze();
+        maze = GenerateNewMaze();
     }
 
-    public int[,] GetNewMaze()
+    public int[,] GenerateNewMaze()
     {
        int[,] newMaze = new int[numRows, numCols]; 
 

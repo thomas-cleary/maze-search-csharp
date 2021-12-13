@@ -27,14 +27,14 @@ public class MazeTests
 
 
     [Test]
-    public void GetNewMaze_WithSquareMaze_ReturnsUndiscoveredMaze()
+    public void GenerateNewMaze_WithSquareMaze_ReturnsUndiscoveredMaze()
     {
         // Arrange
         int dimSize = 8;
         Maze squareMaze = new Maze(dimSize, dimSize);
 
         // Act
-        int[,] returnedMaze = squareMaze.GetNewMaze();
+        int[,] returnedMaze = squareMaze.GenerateNewMaze();
 
         // Assert
         foreach (var tile in returnedMaze)
