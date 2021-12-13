@@ -55,11 +55,19 @@ class Program
             for (int colNum = 0; colNum < maze.numRows; colNum++)
             {
                 MazeTileNum tile = (MazeTileNum) maze.maze[rowNum, colNum];
+
                 switch (tile)
                 {
                     case MazeTileNum.Undiscovered:
                         AddString(MazeTileChar.Undiscovered, (short) MazeTileNum.Undiscovered);
                         break;
+
+                    case MazeTileNum.Wall:
+                        AddString(MazeTileChar.Wall, (short) MazeTileNum.Wall);
+                        break;
+                        
+                    default:
+                        throw new ArgumentException(String.Format("{0} is not a valid TileNum", tile));
                 }
             }
             AddString("\n");
