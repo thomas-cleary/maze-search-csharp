@@ -5,3 +5,4 @@
 
 ## C#
 ``` ./MazeSearch $ dotnet run ```
+NOTE: This does not work on Windows
