@@ -264,4 +264,42 @@ public class MazeTests
         Assert.IsFalse(isUndiscoveredTile);
     }
 
+    [Test]
+    public void DeepCopy_WithSameMaze_CopyMazeSameAsOriginal()
+    {
+        // Arrange
+        double density = 0.3;
+        int numRows = 16;
+        int numCols = numRows * 2;
+
+        Maze testMaze = new Maze(numRows, numCols);
+        testMaze.Setup(density);
+
+        // Act
+        Maze copy = testMaze.DeepCopy();
+
+        // Assert
+        Assert.AreEqual(testMaze.maze, copy.maze);
+    }
+
+    [Test]
+    public void DeepCopy_WithDifferentMaze_CopyMazeDifferentToOriginal()
+    {
+        // Arrange
+        double density = 0.3;
+        int numRows = 16;
+        int numCols = numRows * 2;
+
+        Maze testMaze = new Maze(numRows, numCols);
+        testMaze.Setup(density);
+
+        // Act
+        Maze copy = testMaze.DeepCopy();
+        copy.maze[0, 0] = (int)MazeTileNum.Terminal; // Terminal Not Used In maze
+
+        // Assert
+        Assert.AreNotEqual(testMaze.maze, copy.maze);
+    }
+
+
 }

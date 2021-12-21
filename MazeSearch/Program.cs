@@ -116,13 +116,10 @@ class Program
         for (int i = 0; i < 10; i++)
         {
             Maze maze = new Maze(Constants.NumRows, Constants.NumCols);
+            maze.Setup(Constants.MazeDensity);
 
-            maze.AddWalls(Constants.MazeDensity);
-            maze.AddGoal();
-            maze.AddCurrentPosition();
+            Maze unsearchMaze = maze.DeepCopy();
 
-            DisplayMaze(maze);
-            maze.GenerateNewOpenMaze();
             DisplayMaze(maze);
         }
         MySleep(Constants.IntermissionTime);

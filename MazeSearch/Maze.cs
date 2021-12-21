@@ -18,6 +18,7 @@ public class Maze
         rand = new Random();
 
         GenerateNewOpenMaze();
+
     }
 
 
@@ -81,6 +82,15 @@ public class Maze
     }
 
 
+    /// <summary> Return a deep copy of this maze object </summary>
+    public Maze DeepCopy()
+    {
+        Maze copy = new Maze(this.numRows, this.numCols);
+        Array.Copy(this.maze, copy.maze, this.maze.Length);
+        return copy;
+    }
+
+
     /// <summary> Set this.maze to a new maze with no Wall tiles inserted </summary>
     public void GenerateNewOpenMaze()
     {
@@ -112,6 +122,13 @@ public class Maze
             }
         }
         return false;
+    }
+
+    public void Setup(double density)
+    {
+        AddWalls(density);
+        AddGoal();
+        AddCurrentPosition();
     }
 
 
