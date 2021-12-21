@@ -29,12 +29,38 @@ public static class Search
             }
 
             maze.maze[currentNode.Row, currentNode.Col] = (int) MazeTileNum.CurrentPosition;
+            maze.currentPosition = (currentNode.Row, currentNode.Col);
 
             if (movesMade > 0 && previousNode != (Constants.InvalidPosition, Constants.InvalidPosition))
             {
-                return;
+                maze.maze[maze.startingPosition.row, maze.startingPosition.column] = (int) MazeTileNum.StartingPosition;
+                movesMade++;
             }
-        }
 
+            if (goalFound)
+            {
+                break;
+            }
+
+            foreach ((int row, int col) neighbour in maze.GetUndiscoveredNeighbours())
+            {
+                queue.Enqueue(neighbour);
+
+                if (maze.maze[neighbour.row, neighbour.col] != (int) MazeTileNum.Goal)
+                {
+                    maze.maze[neighbour.row, neighbour.col] = (int) MazeTileNum.InQueue;
+                }
+                else
+                {
+                    goalInQueue = true;
+                }
+
+                // previousNode = currentNode; This was in python version but not sure why because called again outside loop
+
+                Display.DisplayMaze(maze);
+            }
+
+            previousNode = currentNode;
+        }
     }
 }

@@ -28,7 +28,7 @@ public class Maze
     /// <summary> Add the starting position of the search to the maze </summary>
     public void AddCurrentPosition()
     {
-        this.currentPosition = AddTile(MazeTileNum.CurrentPosition);
+        this.currentPosition = AddTileToRandomUndiscovered(MazeTileNum.CurrentPosition);
         this.startingPosition = currentPosition;
     }
 
@@ -36,11 +36,11 @@ public class Maze
     /// <summary> Add a goal point at a random location in the maze for the search alogirthm to find </summary>
     public void AddGoal()
     {
-        this.goal = AddTile(MazeTileNum.Goal);
+        this.goal = AddTileToRandomUndiscovered(MazeTileNum.Goal);
     }
 
 
-    private (int, int) AddTile(MazeTileNum tileNum)
+    private (int, int) AddTileToRandomUndiscovered(MazeTileNum tileNum)
     {
         bool undiscoveredFound = IsUndiscoveredTile();
 
@@ -108,6 +108,13 @@ public class Maze
            }
        }
        this.maze = newMaze;
+    }
+
+
+    /// <summary> Return all (x, y) locations in this.maze that are Undiscovered and neighbours of Current Location
+    public (int, int)[] GetUndiscoveredNeighbours()
+    {
+        
     }
 
 

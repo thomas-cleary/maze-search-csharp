@@ -301,11 +301,34 @@ public class MazeTests
 
         // Act
         Maze copy = testMaze.DeepCopy();
-        copy.maze[0, 0] = (int)MazeTileNum.Terminal; // Terminal Not Used In maze
+        copy.maze[0, 0] = (int) MazeTileNum.Terminal; // Terminal Not Used In maze
 
         // Assert
         Assert.AreNotEqual(testMaze.maze, copy.maze);
     }
 
+    [Test]
+    public void GetUndiscoveredNeighbours_WithNoWalls_ReturnAllAdjacentTiles()
+    {
+        // Arrange
+        double density = 0.0;
+        int numRows = 3;
+        int numCols = numRows * 3;
 
+        (int, int)[] expectedUndiscoveredNeighbours = {
+            (0, 0), (0, 1), (0, 2),
+            (1, 0),         (1, 2),
+            (2, 0), (2, 1), (2, 2)
+        };
+
+        Maze testMaze = new Maze(numRows, numCols);
+        testMaze.Setup(density);
+        testMaze.currentPosition = (1, 1);
+
+        // Act
+        (int, int)[] returnedUndiscoveredNeighbours = testMaze.GetUndiscoveredNeighbours();
+
+        // Assert
+        Assert.AreEqual(expectedUndiscoveredNeighbours, returnedUndiscoveredNeighbours);
+    }
 }
