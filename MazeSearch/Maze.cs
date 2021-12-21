@@ -1,3 +1,4 @@
+
 public class Maze
 {
     public int[,] maze;
