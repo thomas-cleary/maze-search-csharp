@@ -132,7 +132,7 @@ public class MazeTests
     }
 
     [Test]
-    public void AddGoal_WithMazeDensity30_ReturnedGoalSameAsActual()
+    public void AddGoal_WithMazeDensity30_FoundGoalSameAsActual()
     {
         // Arrange
         double density = 0.3;
@@ -145,7 +145,7 @@ public class MazeTests
         testMaze.AddWalls(density);
 
         // Act
-        (int row, int col) returnedGoal = testMaze.AddGoal();
+        testMaze.AddGoal();
  
         // Assert
         for (int rowNum = 0; rowNum < numRows; rowNum++)
@@ -161,9 +161,7 @@ public class MazeTests
             if (foundGoal.row > -1 || foundGoal.col > -1) break; // Found the goal already
         }
 
-        // Assert
-        Assert.AreEqual(foundGoal, returnedGoal);
-
+        Assert.AreEqual(foundGoal, testMaze.goal);
     }
 
     [Test]
@@ -179,5 +177,92 @@ public class MazeTests
 
         // Act / Assert
         Assert.Throws<InvalidOperationException>(() => testMaze.AddGoal());
+    }
+
+    [Test]
+    public void AddCurrentPosition_WithMazeDensity30_FoundCurrentPositionSameAsActual()
+    {
+        // Arrange
+        double density = 0.3;
+        int numRows    = 16;
+        int numCols    = numRows * 2;
+
+        (int row, int col) foundCurrentPosition = (-1, -1);
+
+        Maze testMaze = new Maze(numRows, numCols);
+        testMaze.AddWalls(density);
+        testMaze.AddGoal();
+
+        // Act
+        testMaze.AddCurrentPosition();
+ 
+        // Assert
+        for (int rowNum = 0; rowNum < numRows; rowNum++)
+        {
+            for (int colNum = 0; colNum < numCols; colNum++)
+            {
+                var currTile = testMaze.maze[rowNum, colNum];
+                if (currTile  == (int) MazeTileNum.CurrentPosition)
+                {
+                    foundCurrentPosition = (rowNum, colNum);
+                }
+            }
+            if (foundCurrentPosition.row > -1 || foundCurrentPosition.col > -1) break; // Found the goal already
+        }
+
+        Assert.AreEqual(foundCurrentPosition, testMaze.currentPosition);
+    }
+
+    [Test]
+    public void AddCurrentPosition_WithMazeDensity100_ThrowsInvalidOperationExceptionAndMazeHasNoGoal()
+    {
+        // Arrange
+        double density = 1.0;
+        int numRows    = 16;
+        int numCols    = numRows * 2;
+
+        Maze testMaze = new Maze(numRows, numCols);
+        testMaze.AddWalls(density);
+        testMaze.AddGoal();
+        testMaze.AddCurrentPosition();
+
+        // Act / Assert
+        Assert.Throws<InvalidOperationException>(() => testMaze.AddCurrentPosition());
+    }
+
+    [Test]
+    public void IsUndiscoveredTile_WithMazeDensity30_ReturnsTrue()
+    {
+        // Arrange
+        double density = 0.3;
+        int numRows = 16;
+        int numCols = numRows * 2;
+
+        Maze testMaze = new Maze(numRows, numCols);
+        testMaze.AddWalls(density);
+
+        // Act
+        bool isUndiscoveredTile = testMaze.IsUndiscoveredTile();
+
+        // Assert
+        Assert.IsTrue(isUndiscoveredTile);
+    }
+
+    [Test]
+    public void IsUndiscoveredTile_WithMazeDensity100_ReturnsFalse()
+    {
+        // Arrange
+        double density = 1.0;
+        int numRows = 16;
+        int numCols = numRows * 2;
+
+        Maze testMaze = new Maze(numRows, numCols);
+        testMaze.AddWalls(density);
+
+        // Act
+        bool isUndiscoveredTile = testMaze.IsUndiscoveredTile();
+
+        // Assert
+        Assert.IsFalse(isUndiscoveredTile);
     }
 }

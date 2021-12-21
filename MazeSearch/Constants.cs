@@ -20,14 +20,15 @@ public static class MazeTileChar
     public const string Undiscovered = " ";
     public const string Wall         = " ";
     public const string Goal         = "G";
+    public const string CurrentPosition = "\U00002655";
 }
 
 
 public enum MazeTileNum
 {
-    Terminal     = 1,
-    Undiscovered = 2,
-    Wall         = 3,
-
-    Goal         = 4
+    Terminal        = 1,
+    Undiscovered    = 2,
+    Wall            = 3,
+    Goal            = 4,
+    CurrentPosition = 5
 }

@@ -4,6 +4,9 @@ public class Maze
     public int    numRows;
     public int    numCols;
 
+    public (int row, int column) goal;
+    public (int row, int column) currentPosition;
+
     private Random rand;
 
 
@@ -53,7 +56,7 @@ public class Maze
     }
 
     /// <summary> Add a goal point at a random location in the maze for the search alogirthm to find </summary>
-    public (int, int) AddGoal()
+    public void AddGoal()
     {
         bool undiscoveredFound = false;
 
@@ -95,6 +98,18 @@ public class Maze
 
         this.maze[randRow, randCol] = (int) MazeTileNum.Goal;
 
-        return (randRow, randCol);
+        this.goal = (randRow, randCol);
+    }
+
+    /// <summary> Add the starting position of the search to the maze </summary>
+    public void AddCurrentPosition()
+    {
+        throw new NotImplementedException();
+    }
+
+    /// <summary> Check if there is an undiscovered tile in the maze </summary>
+    public bool IsUndiscoveredTile()
+    {
+        throw new NotImplementedException();
     }
 }
