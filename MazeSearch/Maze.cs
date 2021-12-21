@@ -58,21 +58,7 @@ public class Maze
     /// <summary> Add a goal point at a random location in the maze for the search alogirthm to find </summary>
     public void AddGoal()
     {
-        bool undiscoveredFound = false;
-
-        // Check that maze has an available tile to place the goal on
-        for (int rowNum = 0; rowNum < this.numRows; rowNum++)
-        {
-            for (int colNum = 0; colNum < this.numCols; colNum++)
-            {
-                if (this.maze[rowNum, colNum] == (int) MazeTileNum.Undiscovered)
-                {
-                    undiscoveredFound = true;
-                    break;
-                }
-            }
-            if (undiscoveredFound) break;
-        }
+        bool undiscoveredFound = IsUndiscoveredTile();
 
         if (!undiscoveredFound)
         {
