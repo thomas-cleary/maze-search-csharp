@@ -26,7 +26,9 @@ class Program
             Maze maze = new Maze(Constants.NumRows, Constants.NumCols);
             maze.Setup(Constants.MazeDensity);
 
-            Maze unsearchMaze = maze.DeepCopy();
+            Maze unsearchedMaze = maze.DeepCopy();
+
+            Search.BFS(unsearchedMaze);
 
             Display.DisplayMaze(maze);
             Display.MySleep(Constants.IntermissionTime);

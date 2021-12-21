@@ -139,7 +139,7 @@ public class MazeTests
         int numRows    = 16;
         int numCols    = numRows * 2;
 
-        (int row, int col) foundGoal = (-1, -1);
+        (int row, int col) foundGoal = (Constants.InvalidPosition, Constants.InvalidPosition);
 
         Maze testMaze = new Maze(numRows, numCols);
         testMaze.AddWalls(density);
@@ -158,7 +158,10 @@ public class MazeTests
                     foundGoal = (rowNum, colNum);
                 }
             }
-            if (foundGoal.row > -1 || foundGoal.col > -1) break; // Found the goal already
+            if (foundGoal.row > Constants.InvalidPosition || foundGoal.col > Constants.InvalidPosition) 
+            {
+                break; // Found the goal already
+            }
         }
 
         Assert.AreEqual(foundGoal, testMaze.goal);
@@ -187,7 +190,7 @@ public class MazeTests
         int numRows    = 16;
         int numCols    = numRows * 2;
 
-        (int row, int col) foundCurrentPosition = (-1, -1);
+        (int row, int col) foundCurrentPosition = (Constants.InvalidPosition, Constants.InvalidPosition);
 
         Maze testMaze = new Maze(numRows, numCols);
         testMaze.AddWalls(density);
@@ -207,7 +210,10 @@ public class MazeTests
                     foundCurrentPosition = (rowNum, colNum);
                 }
             }
-            if (foundCurrentPosition.row > -1 || foundCurrentPosition.col > -1) break; // Found the goal already
+            if (foundCurrentPosition.row > Constants.InvalidPosition || foundCurrentPosition.col > Constants.InvalidPosition) 
+            {
+                break; // Found the goal already
+            }
         }
 
         Assert.AreEqual(foundCurrentPosition, testMaze.currentPosition);

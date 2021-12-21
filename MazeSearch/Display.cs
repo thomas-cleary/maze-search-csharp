@@ -58,6 +58,18 @@ public class Display
                         AddString(MazeTileChar.CurrentPosition, (short) MazeTileNum.CurrentPosition);
                         break;
 
+                    case MazeTileNum.StartingPosition:
+                        AddString(MazeTileChar.StartingPosition, (short) MazeTileNum.StartingPosition);
+                        break;
+
+                    case MazeTileNum.Discovered:
+                        AddString(MazeTileChar.Discovered, (short) MazeTileNum.Discovered);
+                        break;
+
+                    case MazeTileNum.InQueue:
+                        AddString(MazeTileChar.InQueue, (short) MazeTileNum.InQueue);
+                        break;
+
                     default:
                         throw new ArgumentException(String.Format("{0} is not a valid TileNum", tile));
                 }
@@ -83,11 +95,14 @@ public class Display
         {
             NCurses.StartColor();
 
-            NCurses.InitPair((short) MazeTileNum.Terminal,        CursesColor.WHITE,  CursesColor.BLACK);       // Terminal
-            NCurses.InitPair((short) MazeTileNum.Undiscovered,    CursesColor.BLACK,  CursesColor.WHITE);   // Undiscovered
-            NCurses.InitPair((short) MazeTileNum.Wall,            CursesColor.RED,    CursesColor.RED);               // Wall
-            NCurses.InitPair((short) MazeTileNum.Goal,            CursesColor.RED,    CursesColor.YELLOW);            // Goal
-            NCurses.InitPair((short) MazeTileNum.CurrentPosition, CursesColor.YELLOW, CursesColor.CYAN);    // CurrentPosition
+            NCurses.InitPair((short) MazeTileNum.Terminal,         CursesColor.WHITE,  CursesColor.BLACK);   
+            NCurses.InitPair((short) MazeTileNum.Undiscovered,     CursesColor.BLACK,  CursesColor.WHITE);   
+            NCurses.InitPair((short) MazeTileNum.Wall,             CursesColor.RED,    CursesColor.RED);     
+            NCurses.InitPair((short) MazeTileNum.Goal,             CursesColor.RED,    CursesColor.YELLOW);  
+            NCurses.InitPair((short) MazeTileNum.CurrentPosition,  CursesColor.YELLOW, CursesColor.CYAN);    
+            NCurses.InitPair((short) MazeTileNum.StartingPosition, CursesColor.YELLOW, CursesColor.BLACK);   
+            NCurses.InitPair((short) MazeTileNum.Discovered,       CursesColor.BLACK,  CursesColor.GREEN);   
+            NCurses.InitPair((short) MazeTileNum.InQueue,          CursesColor.BLACK,  CursesColor.MAGENTA); 
 
             return true;
         }

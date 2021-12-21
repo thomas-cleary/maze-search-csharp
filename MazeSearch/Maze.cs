@@ -8,6 +8,8 @@ public class Maze
     public (int row, int column) goal;
     public (int row, int column) currentPosition;
 
+    public (int row, int column) startingPosition;
+
     private Random rand;
 
 
@@ -27,6 +29,7 @@ public class Maze
     public void AddCurrentPosition()
     {
         this.currentPosition = AddTile(MazeTileNum.CurrentPosition);
+        this.startingPosition = currentPosition;
     }
 
 
