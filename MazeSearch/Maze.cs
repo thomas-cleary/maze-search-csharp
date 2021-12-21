@@ -110,6 +110,19 @@ public class Maze
     /// <summary> Check if there is an undiscovered tile in the maze </summary>
     public bool IsUndiscoveredTile()
     {
-        throw new NotImplementedException();
+        bool undiscoveredFound = false;
+
+        // Check that maze has an available tile to place the goal on
+        for (int rowNum = 0; rowNum < this.numRows; rowNum++)
+        {
+            for (int colNum = 0; colNum < this.numCols; colNum++)
+            {
+                if (this.maze[rowNum, colNum] == (int) MazeTileNum.Undiscovered)
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }
