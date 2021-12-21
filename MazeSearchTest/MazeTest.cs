@@ -223,8 +223,6 @@ public class MazeTests
 
         Maze testMaze = new Maze(numRows, numCols);
         testMaze.AddWalls(density);
-        testMaze.AddGoal();
-        testMaze.AddCurrentPosition();
 
         // Act / Assert
         Assert.Throws<InvalidOperationException>(() => testMaze.AddCurrentPosition());
@@ -265,4 +263,5 @@ public class MazeTests
         // Assert
         Assert.IsFalse(isUndiscoveredTile);
     }
+
 }

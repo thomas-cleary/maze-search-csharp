@@ -24,12 +24,18 @@ public class Maze
     /// <summary> Add the starting position of the search to the maze </summary>
     public void AddCurrentPosition()
     {
-        throw new NotImplementedException();
+        this.currentPosition = AddTile(MazeTileNum.CurrentPosition);
     }
 
 
     /// <summary> Add a goal point at a random location in the maze for the search alogirthm to find </summary>
     public void AddGoal()
+    {
+        this.goal = AddTile(MazeTileNum.Goal);
+    }
+
+
+    private (int, int) AddTile(MazeTileNum tileNum)
     {
         bool undiscoveredFound = IsUndiscoveredTile();
 
@@ -48,9 +54,9 @@ public class Maze
         }
         while (!(this.maze[randRow, randCol] == (int) MazeTileNum.Undiscovered));
 
-        this.maze[randRow, randCol] = (int) MazeTileNum.Goal;
+        this.maze[randRow, randCol] = (int) tileNum;
 
-        this.goal = (randRow, randCol);
+        return (randRow, randCol);
     }
 
 
@@ -94,8 +100,6 @@ public class Maze
     /// <summary> Check if there is an undiscovered tile in the maze </summary>
     public bool IsUndiscoveredTile()
     {
-        bool undiscoveredFound = false;
-
         // Check that maze has an available tile to place the goal on
         for (int rowNum = 0; rowNum < this.numRows; rowNum++)
         {
