@@ -308,25 +308,25 @@ public class MazeTests
     }
 
     [Test]
-    public void GetUndiscoveredNeighbours_WithNoWalls_ReturnAllAdjacentTiles()
+    public void GetUndiscoveredNeighbours_WithNoSetup_ReturnAllAdjacentTiles()
     {
         // Arrange
         double density = 0.0;
         int numRows = 3;
-        int numCols = numRows * 3;
+        int numCols = numRows;
 
-        (int, int)[] expectedUndiscoveredNeighbours = {
-            (0, 0), (0, 1), (0, 2),
-            (1, 0),         (1, 2),
-            (2, 0), (2, 1), (2, 2)
-        };
+        System.Collections.Generic.List<(int, int)> expectedUndiscoveredNeighbours = new System.Collections.Generic.List<(int, int)>();
+        expectedUndiscoveredNeighbours.Add((1, 0)); // Left
+        expectedUndiscoveredNeighbours.Add((0, 1)); // Up
+        expectedUndiscoveredNeighbours.Add((1, 2)); // Right
+        expectedUndiscoveredNeighbours.Add((2, 1)); // Down
 
         Maze testMaze = new Maze(numRows, numCols);
-        testMaze.Setup(density);
         testMaze.currentPosition = (1, 1);
+        testMaze.maze[testMaze.currentPosition.row, testMaze.currentPosition.column] = (int) MazeTileNum.CurrentPosition;
 
         // Act
-        (int, int)[] returnedUndiscoveredNeighbours = testMaze.GetUndiscoveredNeighbours();
+        System.Collections.Generic.List<(int, int)> returnedUndiscoveredNeighbours = testMaze.GetUndiscoveredNeighbours();
 
         // Assert
         Assert.AreEqual(expectedUndiscoveredNeighbours, returnedUndiscoveredNeighbours);

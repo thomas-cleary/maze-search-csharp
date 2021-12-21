@@ -90,7 +90,11 @@ public class Maze
     public Maze DeepCopy()
     {
         Maze copy = new Maze(this.numRows, this.numCols);
+        copy.startingPosition = this.startingPosition;
+        copy.currentPosition  = this.currentPosition;
+        copy.goal             = this.goal;
         Array.Copy(this.maze, copy.maze, this.maze.Length);
+
         return copy;
     }
 
@@ -112,9 +116,62 @@ public class Maze
 
 
     /// <summary> Return all (x, y) locations in this.maze that are Undiscovered and neighbours of Current Location
-    public (int, int)[] GetUndiscoveredNeighbours()
+    public List<(int, int)> GetUndiscoveredNeighbours()
     {
-        
+        List<(int, int)> undiscoveredNeighbours = new List<(int, int)>();
+
+        int[] visitable = {(int) MazeTileNum.Undiscovered, (int) MazeTileNum.Goal};
+        int numDirections = 4;
+
+        for (int direction = 1; direction <= numDirections; direction++)
+        {
+            switch (direction)
+            {
+                case 1: // left
+                    if (!(currentPosition.column - 1 < 0))
+                    {
+                        if (visitable.Contains(maze[currentPosition.row, currentPosition.column - 1]))
+                        {
+                            undiscoveredNeighbours.Add((currentPosition.row, currentPosition.column - 1));
+                        }
+                    }
+                    break;
+
+                case 2: // up
+                    if (!(currentPosition.row - 1 < 0))
+                    {
+                        if (visitable.Contains(maze[currentPosition.row - 1, currentPosition.column]))
+                        {
+                            undiscoveredNeighbours.Add((currentPosition.row - 1, currentPosition.column));
+                        }
+                    }
+                    break;
+
+                case 3: // right
+                    if (!(currentPosition.column + 1 > numRows - 1))
+                    {
+                        if (visitable.Contains(maze[currentPosition.row, currentPosition.column + 1]))
+                        {
+                            undiscoveredNeighbours.Add((currentPosition.row, currentPosition.column + 1));
+                        }
+                    }
+                    break;
+
+                case 4: // down
+                    if (!(currentPosition.row + 1 > numCols - 1))
+                    {
+                        if (visitable.Contains(maze[currentPosition.row + 1, currentPosition.column]))
+                        {
+                            undiscoveredNeighbours.Add((currentPosition.row + 1, currentPosition.column));
+                        }
+                    }
+                    break;
+                
+                default:
+                    break;
+            }
+        }
+        return undiscoveredNeighbours;
     }
 
 

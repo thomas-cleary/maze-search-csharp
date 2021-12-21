@@ -21,7 +21,7 @@ class Program
 
     private static void MazeSearchSim()
     {
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 1; i++)
         {
             Maze maze = new Maze(Constants.NumRows, Constants.NumCols);
             maze.Setup(Constants.MazeDensity);
