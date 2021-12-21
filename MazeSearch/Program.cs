@@ -70,6 +70,10 @@ class Program
                         AddString(MazeTileChar.Goal, (short) MazeTileNum.Goal);
                         break;
 
+                    case MazeTileNum.CurrentPosition:
+                        AddString(MazeTileChar.CurrentPosition, (short) MazeTileNum.CurrentPosition);
+                        break;
+
                     default:
                         throw new ArgumentException(String.Format("{0} is not a valid TileNum", tile));
                 }
@@ -95,9 +99,11 @@ class Program
         {
             NCurses.StartColor();
 
-            NCurses.InitPair(1, CursesColor.WHITE, CursesColor.BLACK);    // Terminal
-            NCurses.InitPair(2, CursesColor.BLACK, CursesColor.WHITE);    // Undiscovered
-            NCurses.InitPair(3, CursesColor.RED, CursesColor.RED);        // Wall
+            NCurses.InitPair((short) MazeTileNum.Terminal,        CursesColor.WHITE,  CursesColor.BLACK);       // Terminal
+            NCurses.InitPair((short) MazeTileNum.Undiscovered,    CursesColor.BLACK,  CursesColor.WHITE);   // Undiscovered
+            NCurses.InitPair((short) MazeTileNum.Wall,            CursesColor.RED,    CursesColor.RED);               // Wall
+            NCurses.InitPair((short) MazeTileNum.Goal,            CursesColor.RED,    CursesColor.YELLOW);            // Goal
+            NCurses.InitPair((short) MazeTileNum.CurrentPosition, CursesColor.YELLOW, CursesColor.CYAN);    // CurrentPosition
 
             return true;
         }
@@ -110,7 +116,11 @@ class Program
         for (int i = 0; i < 10; i++)
         {
             Maze maze = new Maze(Constants.NumRows, Constants.NumCols);
+
             maze.AddWalls(Constants.MazeDensity);
+            maze.AddGoal();
+            maze.AddCurrentPosition();
+
             DisplayMaze(maze);
             maze.GenerateNewOpenMaze();
             DisplayMaze(maze);
