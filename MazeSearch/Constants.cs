@@ -20,7 +20,7 @@ public static class MazeTileChar
     public const string Undiscovered = " ";
     public const string Wall         = " ";
     public const string Goal         = "G";
-    public const string CurrentPosition = "\U00002655";
+    public const string CurrentPosition = "C";
 }
 
 
