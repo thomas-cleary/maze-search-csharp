@@ -8,6 +8,8 @@ public class Maze
     public (int row, int column) goal;
     public (int row, int column) currentPosition;
 
+    public (int row, int column) startingPosition;
+
     private Random rand;
 
 
@@ -26,18 +28,19 @@ public class Maze
     /// <summary> Add the starting position of the search to the maze </summary>
     public void AddCurrentPosition()
     {
-        this.currentPosition = AddTile(MazeTileNum.CurrentPosition);
+        this.currentPosition = AddTileToRandomUndiscovered(MazeTileNum.CurrentPosition);
+        this.startingPosition = currentPosition;
     }
 
 
     /// <summary> Add a goal point at a random location in the maze for the search alogirthm to find </summary>
     public void AddGoal()
     {
-        this.goal = AddTile(MazeTileNum.Goal);
+        this.goal = AddTileToRandomUndiscovered(MazeTileNum.Goal);
     }
 
 
-    private (int, int) AddTile(MazeTileNum tileNum)
+    private (int, int) AddTileToRandomUndiscovered(MazeTileNum tileNum)
     {
         bool undiscoveredFound = IsUndiscoveredTile();
 
@@ -87,7 +90,11 @@ public class Maze
     public Maze DeepCopy()
     {
         Maze copy = new Maze(this.numRows, this.numCols);
+        copy.startingPosition = this.startingPosition;
+        copy.currentPosition  = this.currentPosition;
+        copy.goal             = this.goal;
         Array.Copy(this.maze, copy.maze, this.maze.Length);
+
         return copy;
     }
 
@@ -105,6 +112,66 @@ public class Maze
            }
        }
        this.maze = newMaze;
+    }
+
+
+    /// <summary> Return all (x, y) locations in this.maze that are Undiscovered and neighbours of Current Location
+    public List<(int, int)> GetUndiscoveredNeighbours()
+    {
+        List<(int, int)> undiscoveredNeighbours = new List<(int, int)>();
+
+        // If goal already on the queue it will be dequeued before we reach the extra additions
+        int[] visitable = {(int) MazeTileNum.Undiscovered, (int) MazeTileNum.Goal};
+
+        int numDirections = 4;
+        for (int direction = 1; direction <= numDirections; direction++)
+        {
+            if (direction == 1) // Left
+            {
+                if (!(this.currentPosition.column - 1 < 0))
+                {
+                    if (visitable.Contains(this.maze[this.currentPosition.row, this.currentPosition.column - 1]))
+                    {
+                        undiscoveredNeighbours.Add((this.currentPosition.row, this.currentPosition.column - 1));
+                    }
+                }
+            }
+
+            else if (direction == 2) // Up
+            {
+                if (!(this.currentPosition.row - 1 < 0))
+                {
+                    if (visitable.Contains(this.maze[this.currentPosition.row - 1, this.currentPosition.column]))
+                    {
+                        undiscoveredNeighbours.Add((this.currentPosition.row - 1, this.currentPosition.column));
+                    }
+                }
+            }
+
+            else if (direction == 3) // Right
+            {
+                if (!(this.currentPosition.column + 1 >= this.numCols))
+                {
+                    if (visitable.Contains(this.maze[this.currentPosition.row, this.currentPosition.column + 1]))
+                    {
+                        undiscoveredNeighbours.Add((this.currentPosition.row, this.currentPosition.column + 1));
+                    }
+                }
+            }
+
+            else // Down
+            {
+                if (!(this.currentPosition.row + 1 >= this.numRows))
+                {
+                    if (visitable.Contains(this.maze[this.currentPosition.row + 1, this.currentPosition.column]))
+                    {
+                        undiscoveredNeighbours.Add((this.currentPosition.row + 1, this.currentPosition.column));
+                    }
+                }
+            }
+        }
+
+        return undiscoveredNeighbours;
     }
 
 

@@ -6,6 +6,8 @@ class Program
 {
     static void Main(string[] args)
     {
+
+        // Debug_BFS();
         IntPtr screen = NCurses.InitScreen(); // Not sure if this is needed as member variable
 
         if(!Display.InitColors())
@@ -19,16 +21,31 @@ class Program
     }
 
 
+    public static void Debug_BFS()
+    {
+        // Arrange
+        double density = 0.0;
+        int numRows = 4;
+        int numCols = numRows;
+
+        Maze testMaze = new Maze(numRows, numCols);
+        testMaze.Setup(density);
+
+        Search.BFS(testMaze, true);
+    }
+
+
     private static void MazeSearchSim()
     {
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < Constants.NumSims; i++)
         {
             Maze maze = new Maze(Constants.NumRows, Constants.NumCols);
             maze.Setup(Constants.MazeDensity);
 
-            Maze unsearchMaze = maze.DeepCopy();
+            Maze unsearchedMaze = maze.DeepCopy();
 
-            Display.DisplayMaze(maze);
+            Search.BFS(unsearchedMaze, false);
+
             Display.MySleep(Constants.IntermissionTime);
         }
     }
