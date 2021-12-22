@@ -311,7 +311,6 @@ public class MazeTests
     public void GetUndiscoveredNeighbours_WithAllNeighbours_ReturnAllAdjacentTiles()
     {
         // Arrange
-        double density = 0.0;
         int numRows = 3;
         int numCols = numRows;
 
@@ -337,7 +336,6 @@ public class MazeTests
     public void GetUndiscoveredNeighbours_WithNoLeftNeighbour_ReturnAllAdjacentTiles()
     {
         // Arrange
-        double density = 0.0;
         int numRows = 3;
         int numCols = numRows;
 
@@ -362,7 +360,6 @@ public class MazeTests
     public void GetUndiscoveredNeighbours_WithNoUpNeighbour_ReturnAllAdjacentTiles()
     {
         // Arrange
-        double density = 0.0;
         int numRows = 3;
         int numCols = numRows;
 
@@ -387,7 +384,6 @@ public class MazeTests
     public void GetUndiscoveredNeighbours_WithNoRightNeighbour_ReturnAllAdjacentTiles()
     {
         // Arrange
-        double density = 0.0;
         int numRows = 3;
         int numCols = numRows;
 
@@ -412,7 +408,6 @@ public class MazeTests
     public void GetUndiscoveredNeighbours_WithNoDownNeighbour_ReturnAllAdjacentTiles()
     {
         // Arrange
-        double density = 0.0;
         int numRows = 3;
         int numCols = numRows;
 
@@ -437,7 +432,6 @@ public class MazeTests
     public void GetUndiscoveredNeighbours_WithNoLeftUpNeighbours_ReturnAllAdjacentTiles()
     {
         // Arrange
-        double density = 0.0;
         int numRows = 3;
         int numCols = numRows;
 
