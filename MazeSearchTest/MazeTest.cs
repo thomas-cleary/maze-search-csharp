@@ -308,7 +308,7 @@ public class MazeTests
     }
 
     [Test]
-    public void GetUndiscoveredNeighbours_WithNoSetup_ReturnAllAdjacentTiles()
+    public void GetUndiscoveredNeighbours_WithAllNeighbours_ReturnAllAdjacentTiles()
     {
         // Arrange
         double density = 0.0;
@@ -316,6 +316,7 @@ public class MazeTests
         int numCols = numRows;
 
         System.Collections.Generic.List<(int, int)> expectedUndiscoveredNeighbours = new System.Collections.Generic.List<(int, int)>();
+        // GetUndiscoveredNeighbours() will add in order Left, Up, Right, Down        
         expectedUndiscoveredNeighbours.Add((1, 0)); // Left
         expectedUndiscoveredNeighbours.Add((0, 1)); // Up
         expectedUndiscoveredNeighbours.Add((1, 2)); // Right
@@ -331,4 +332,129 @@ public class MazeTests
         // Assert
         Assert.AreEqual(expectedUndiscoveredNeighbours, returnedUndiscoveredNeighbours);
     }
+
+    [Test]
+    public void GetUndiscoveredNeighbours_WithNoLeftNeighbour_ReturnAllAdjacentTiles()
+    {
+        // Arrange
+        double density = 0.0;
+        int numRows = 3;
+        int numCols = numRows;
+
+        System.Collections.Generic.List<(int, int)> expectedUndiscoveredNeighbours = new System.Collections.Generic.List<(int, int)>();
+        // GetUndiscoveredNeighbours() will add in order Left, Up, Right, Down
+        expectedUndiscoveredNeighbours.Add((0, 0)); // Up
+        expectedUndiscoveredNeighbours.Add((1, 1)); // Right
+        expectedUndiscoveredNeighbours.Add((2, 0)); // Down
+
+        Maze testMaze = new Maze(numRows, numCols);
+        testMaze.currentPosition = (1, 0);
+        testMaze.maze[testMaze.currentPosition.row, testMaze.currentPosition.column] = (int) MazeTileNum.CurrentPosition;
+
+        // Act
+        System.Collections.Generic.List<(int, int)> returnedUndiscoveredNeighbours = testMaze.GetUndiscoveredNeighbours();
+
+        // Assert
+        Assert.AreEqual(expectedUndiscoveredNeighbours, returnedUndiscoveredNeighbours);
+    }
+
+    [Test]
+    public void GetUndiscoveredNeighbours_WithNoUpNeighbour_ReturnAllAdjacentTiles()
+    {
+        // Arrange
+        double density = 0.0;
+        int numRows = 3;
+        int numCols = numRows;
+
+        System.Collections.Generic.List<(int, int)> expectedUndiscoveredNeighbours = new System.Collections.Generic.List<(int, int)>();
+        // GetUndiscoveredNeighbours() will add in order Left, Up, Right, Down
+        expectedUndiscoveredNeighbours.Add((0, 0)); // Left
+        expectedUndiscoveredNeighbours.Add((0, 2)); // Right
+        expectedUndiscoveredNeighbours.Add((1, 1)); // Down
+
+        Maze testMaze = new Maze(numRows, numCols);
+        testMaze.currentPosition = (0, 1);
+        testMaze.maze[testMaze.currentPosition.row, testMaze.currentPosition.column] = (int) MazeTileNum.CurrentPosition;
+
+        // Act
+        System.Collections.Generic.List<(int, int)> returnedUndiscoveredNeighbours = testMaze.GetUndiscoveredNeighbours();
+
+        // Assert
+        Assert.AreEqual(expectedUndiscoveredNeighbours, returnedUndiscoveredNeighbours);
+    }
+
+    [Test]
+    public void GetUndiscoveredNeighbours_WithNoRightNeighbour_ReturnAllAdjacentTiles()
+    {
+        // Arrange
+        double density = 0.0;
+        int numRows = 3;
+        int numCols = numRows;
+
+        System.Collections.Generic.List<(int, int)> expectedUndiscoveredNeighbours = new System.Collections.Generic.List<(int, int)>();
+        // GetUndiscoveredNeighbours() will add in order Left, Up, Right, Down
+        expectedUndiscoveredNeighbours.Add((1, 1)); // Left
+        expectedUndiscoveredNeighbours.Add((0, 2)); // Up
+        expectedUndiscoveredNeighbours.Add((2, 2)); // Down
+
+        Maze testMaze = new Maze(numRows, numCols);
+        testMaze.currentPosition = (1, 2);
+        testMaze.maze[testMaze.currentPosition.row, testMaze.currentPosition.column] = (int) MazeTileNum.CurrentPosition;
+
+        // Act
+        System.Collections.Generic.List<(int, int)> returnedUndiscoveredNeighbours = testMaze.GetUndiscoveredNeighbours();
+
+        // Assert
+        Assert.AreEqual(expectedUndiscoveredNeighbours, returnedUndiscoveredNeighbours);
+    }
+
+    [Test]
+    public void GetUndiscoveredNeighbours_WithNoDownNeighbour_ReturnAllAdjacentTiles()
+    {
+        // Arrange
+        double density = 0.0;
+        int numRows = 3;
+        int numCols = numRows;
+
+        System.Collections.Generic.List<(int, int)> expectedUndiscoveredNeighbours = new System.Collections.Generic.List<(int, int)>();
+        // GetUndiscoveredNeighbours() will add in order Left, Up, Right, Down
+        expectedUndiscoveredNeighbours.Add((2, 0)); // Left
+        expectedUndiscoveredNeighbours.Add((1, 1)); // Up
+        expectedUndiscoveredNeighbours.Add((2, 2)); // Right
+
+        Maze testMaze = new Maze(numRows, numCols);
+        testMaze.currentPosition = (2, 1);
+        testMaze.maze[testMaze.currentPosition.row, testMaze.currentPosition.column] = (int) MazeTileNum.CurrentPosition;
+
+        // Act
+        System.Collections.Generic.List<(int, int)> returnedUndiscoveredNeighbours = testMaze.GetUndiscoveredNeighbours();
+
+        // Assert
+        Assert.AreEqual(expectedUndiscoveredNeighbours, returnedUndiscoveredNeighbours);
+    }
+
+    [Test]
+    public void GetUndiscoveredNeighbours_WithNoLeftUpNeighbours_ReturnAllAdjacentTiles()
+    {
+        // Arrange
+        double density = 0.0;
+        int numRows = 3;
+        int numCols = numRows;
+
+        System.Collections.Generic.List<(int, int)> expectedUndiscoveredNeighbours = new System.Collections.Generic.List<(int, int)>();
+        // GetUndiscoveredNeighbours() will add in order Left, Up, Right, Down
+        expectedUndiscoveredNeighbours.Add((0, 1)); // Right
+        expectedUndiscoveredNeighbours.Add((1, 0)); // Down
+
+        Maze testMaze = new Maze(numRows, numCols);
+        testMaze.currentPosition = (0, 0);
+        testMaze.maze[testMaze.currentPosition.row, testMaze.currentPosition.column] = (int) MazeTileNum.CurrentPosition;
+
+        // Act
+        System.Collections.Generic.List<(int, int)> returnedUndiscoveredNeighbours = testMaze.GetUndiscoveredNeighbours();
+
+        // Assert
+        Assert.AreEqual(expectedUndiscoveredNeighbours, returnedUndiscoveredNeighbours);
+    }
+
 }

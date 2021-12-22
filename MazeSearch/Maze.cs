@@ -120,6 +120,57 @@ public class Maze
     {
         List<(int, int)> undiscoveredNeighbours = new List<(int, int)>();
 
+        // If goal already on the queue it will be dequeued before we reach the extra additions
+        int[] visitable = {(int) MazeTileNum.Undiscovered, (int) MazeTileNum.Goal};
+
+        int numDirections = 4;
+        for (int direction = 1; direction <= numDirections; direction++)
+        {
+            if (direction == 1) // Left
+            {
+                if (!(this.currentPosition.column - 1 < 0))
+                {
+                    if (visitable.Contains(this.maze[this.currentPosition.row, this.currentPosition.column - 1]))
+                    {
+                        undiscoveredNeighbours.Add((this.currentPosition.row, this.currentPosition.column - 1));
+                    }
+                }
+            }
+
+            else if (direction == 2) // Up
+            {
+                if (!(this.currentPosition.row - 1 < 0))
+                {
+                    if (visitable.Contains(this.maze[this.currentPosition.row - 1, this.currentPosition.column]))
+                    {
+                        undiscoveredNeighbours.Add((this.currentPosition.row - 1, this.currentPosition.column));
+                    }
+                }
+            }
+
+            else if (direction == 3) // Right
+            {
+                if (!(this.currentPosition.column + 1 >= this.numCols))
+                {
+                    if (visitable.Contains(this.maze[this.currentPosition.row, this.currentPosition.column + 1]))
+                    {
+                        undiscoveredNeighbours.Add((this.currentPosition.row, this.currentPosition.column + 1));
+                    }
+                }
+            }
+
+            else // Down
+            {
+                if (!(this.currentPosition.row + 1 >= this.numRows))
+                {
+                    if (visitable.Contains(this.maze[this.currentPosition.row + 1, this.currentPosition.column]))
+                    {
+                        undiscoveredNeighbours.Add((this.currentPosition.row + 1, this.currentPosition.column));
+                    }
+                }
+            }
+        }
+
         return undiscoveredNeighbours;
     }
 
