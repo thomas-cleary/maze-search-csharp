@@ -148,7 +148,7 @@ def bfs(screen, search_map, at_x, at_y):
             else:
                 goal_in_queue = True
 
-            previous_node = current_node
+            previous_node = current_node # probably dont need this...
 
             print_map(screen, search_map, moves_made, goal_found, goal_in_queue)
             screen.refresh()

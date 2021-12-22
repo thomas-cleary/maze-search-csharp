@@ -3,12 +3,12 @@ using System;
 
 public static class Constants
 {
-    public const int NumSims = 10;
-    public const int AnimationSpeed   = 250; // milliseconds
+    public const int NumSims = 3;
+    public const int AnimationSpeed   = 1; // milliseconds
     public const int IntermissionTime = 2000; // milliseconds
 
-    public const int NumRows = 8;
-    public const int NumCols = 16;
+    public const int NumRows = 48;
+    public const int NumCols = 96;
 
     public const double MazeDensity = 0.3;
 
@@ -24,8 +24,8 @@ public static class MazeTileChar
     public const string Goal         = "G";
     public const string CurrentPosition = "C";
     public const string StartingPosition = "S";
-    public const string Discovered       = "o";
-    public const string InQueue          = "O";
+    public const string Discovered       = " ";
+    public const string InQueue          = "Q";
 }
 
 

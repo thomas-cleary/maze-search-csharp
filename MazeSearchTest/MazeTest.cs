@@ -451,4 +451,5 @@ public class MazeTests
         Assert.AreEqual(expectedUndiscoveredNeighbours, returnedUndiscoveredNeighbours);
     }
 
+
 }
