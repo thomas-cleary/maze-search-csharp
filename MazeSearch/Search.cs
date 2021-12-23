@@ -1,19 +1,128 @@
 
 public static class Search
 {
-    public static void BFS(Maze maze, bool debug)
+
+    public static void Astar(Maze maze)
     {
-        search(maze, "Breadth First Search", debug);
+        string searchType = "A Star";
+
+        PriorityQueue<(int, int), double>  priorityQueue = new PriorityQueue<(int, int), double>();
+        Dictionary<(int, int), (int, int)> cameFrom      = new Dictionary<(int, int), (int, int)>();
+        Dictionary<(int, int), int>        costSoFar     = new Dictionary<(int, int), int>();
+
+        priorityQueue.Enqueue((maze.startingPosition.row, maze.startingPosition.column), 0);
+        costSoFar[maze.startingPosition] = 0;
+
+        (int row, int col) invalidNode = (Constants.InvalidPosition, Constants.InvalidPosition);
+        (int row, int col) previousNode = invalidNode;
+
+        bool goalFound = false;
+        int movesMade  = 0;
+
+        while (priorityQueue.Count > 0 && !goalFound)
+        {
+            if (previousNode != invalidNode)
+            {
+                // Mark tile we just moved from as Discovered
+                maze.maze[previousNode.row, previousNode.col] = (int) MazeTileNum.Discovered;
+
+                if (movesMade > 0)
+                {
+                    // If we have moved off the starting position mark it as the starting position tile
+                    maze.maze[maze.startingPosition.row, maze.startingPosition.column] = (int) MazeTileNum.StartingPosition;
+                }
+            }
+
+            (int row, int col) currentNode = priorityQueue.Dequeue();
+            
+            if (maze.maze[currentNode.row, currentNode.col] == (int) MazeTileNum.GoalInQueue)
+            {
+                goalFound = true;
+            }
+
+            int currentNodeTileType;
+            // Mark the dequeued node as the current position on the maze if it is not the goal
+            if (maze.maze[currentNode.row, currentNode.col] != (int) MazeTileNum.GoalInQueue)
+            {
+                currentNodeTileType = (int) MazeTileNum.CurrentPosition;
+            }
+            else
+            {
+                currentNodeTileType = (int) MazeTileNum.GoalFound;
+            }
+
+            maze.maze[currentNode.row, currentNode.col] = currentNodeTileType;
+            maze.currentPosition = (currentNode.row, currentNode.col);
+            
+            movesMade++;
+
+            Display.DisplayMaze(maze, searchType, movesMade);
+
+            if (goalFound)
+            {
+                // the search is complete
+                break;
+            }
+
+            foreach ((int row, int col) neighbour in maze.GetUndiscoveredNeighbours())
+            {
+                int newCost = costSoFar[currentNode] + GetCost(currentNode, neighbour);
+
+                if (!costSoFar.TryGetValue(neighbour, out int value) || newCost < costSoFar[neighbour])
+                {
+                    costSoFar[neighbour] = newCost;
+                    double priority = newCost + GetHeuristic(neighbour, maze.goal);
+
+                    priorityQueue.Enqueue(neighbour, priority);
+                    
+                    // if the neighbour is not the goal change its state to InQueue
+                    // TODO: else goalInQueue = true and update Display.DisplayMaze() to change goal colour
+                    if (maze.maze[neighbour.row, neighbour.col] != (int) MazeTileNum.Goal)
+                    {
+                        maze.maze[neighbour.row, neighbour.col] = (int) MazeTileNum.InQueue;
+                    }
+                    else
+                    {
+                        maze.maze[neighbour.row, neighbour.col] = (int) MazeTileNum.GoalInQueue;
+                    }
+
+                    Display.DisplayMaze(maze, searchType, movesMade);
+                }
+            }
+            previousNode = currentNode;
+        }
     }
 
 
-    public static void DFS(Maze maze, bool debug)
+    public static void BFS(Maze maze)
     {
-        search(maze, "Depth First Search", debug);
+        SearchMaze(maze, "Breadth First Search");
     }
 
 
-    private static void search(Maze maze, string searchType, bool debug)
+    public static void DFS(Maze maze)
+    {
+        SearchMaze(maze, "Depth First Search");
+    }
+
+
+    private static int GetCost((int, int) node, (int, int) neighbour)
+    {
+        return 1;
+    }
+
+    private static double GetHeuristic((int row, int col) node, (int row, int col) goal)
+    {
+        double dx = Math.Abs(node.row - goal.row);
+        double dy = Math.Abs(node.col - goal.col);
+
+        double tieBreaker = (1.0 + 0.0005);
+
+        return (dx + dy) * tieBreaker;
+    }
+
+
+    private static void SearchMaze(Maze maze, string searchType)
     {
         LinkedList<(int, int)> linkedList = new LinkedList<(int, int)>();
 
@@ -30,15 +139,6 @@ public static class Search
 
         while (linkedList.Count() > 0 && !goalFound)
         {
-            if (debug)
-            {
-                foreach ((int, int) node in linkedList)
-                {
-                    Console.WriteLine(String.Format("Moves made {0}: ", movesMade));
-                    Console.WriteLine(node);
-                }
-                Console.WriteLine("\n");
-            }
 
             if (previousNode != invalidNode)
             {
@@ -52,21 +152,9 @@ public static class Search
                 }
             }
 
-            (int row, int col) currentNode;
-            // Get the next tile on the maze we will move to
-            try
-            {
-                currentNode =  linkedList.First.Value;
-            }
-            catch (NullReferenceException e)
-            {
-                throw e;
-            }
-
+            (int row, int col) currentNode = linkedList.First.Value;
             linkedList.RemoveFirst();
 
-
-            
             if (maze.maze[currentNode.row, currentNode.col] == (int) MazeTileNum.GoalInQueue)
             {
                 goalFound = true;
@@ -78,7 +166,8 @@ public static class Search
             {
                 currentNodeTileType = (int) MazeTileNum.CurrentPosition;
             }
-            else{
+            else
+            {
                 currentNodeTileType = (int) MazeTileNum.GoalFound;
             }
 
@@ -87,10 +176,7 @@ public static class Search
             
             movesMade++;
 
-            if (!debug)
-            {
-                Display.DisplayMaze(maze, searchType, movesMade);
-            }
+            Display.DisplayMaze(maze, searchType, movesMade);
 
             if (goalFound)
             {
@@ -122,10 +208,7 @@ public static class Search
                     maze.maze[neighbour.row, neighbour.col] = (int) MazeTileNum.GoalInQueue;
                 }
 
-                if (!debug)
-                {
-                    Display.DisplayMaze(maze, searchType, movesMade);
-                }
+                Display.DisplayMaze(maze, searchType, movesMade);
             }
 
             previousNode = currentNode;

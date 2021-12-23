@@ -3,8 +3,8 @@ using System;
 
 public static class Constants
 {
-    public const int NumSims = 1;
-    public const int AnimationSpeed   = 25; // milliseconds
+    public const int NumSims = 10;
+    public const int AnimationSpeed   = 10; // milliseconds
     public const int IntermissionTime = 2000; // milliseconds
 
     public const int NumRows = 32;
