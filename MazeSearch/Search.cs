@@ -3,6 +3,8 @@ public static class Search
 {
     public static void BFS(Maze maze, bool debug)
     {
+        string searchName = "Breadth First Search";
+
         Queue<(int, int)> queue = new Queue<(int, int)>();
 
         queue.Enqueue((maze.startingPosition.row, maze.startingPosition.column));
@@ -64,7 +66,7 @@ public static class Search
 
             if (!debug)
             {
-                Display.DisplayMaze(maze);
+                Display.DisplayMaze(maze, searchName, movesMade);
             }
 
             if (goalFound)
@@ -91,7 +93,7 @@ public static class Search
 
                 if (!debug)
                 {
-                    Display.DisplayMaze(maze);
+                    Display.DisplayMaze(maze, searchName, movesMade);
                 }
             }
 

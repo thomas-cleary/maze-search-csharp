@@ -4,15 +4,16 @@ using System;
 public static class Constants
 {
     public const int NumSims = 1;
-    public const int AnimationSpeed   = 10; // milliseconds
+    public const int AnimationSpeed   = 25; // milliseconds
     public const int IntermissionTime = 2000; // milliseconds
 
     public const int NumRows = 32;
     public const int NumCols = 64;
 
-    public const double MazeDensity = 0.3;
+    public const double MazeDensity = 0.36;
 
     public const int InvalidPosition = -1;
+
 
 }
 

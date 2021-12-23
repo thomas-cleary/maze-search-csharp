@@ -30,7 +30,7 @@ public class Display
     }
 
 
-    public static void DisplayMaze(Maze maze)
+    public static void DisplayMaze(Maze maze, string searchType, int nodesSearced)
     {
         NCurses.Erase();
 
@@ -84,6 +84,13 @@ public class Display
             }
             AddString("\n");
         }
+        AddString(String.Concat(Enumerable.Repeat("-", 80)));
+        AddString("\n");
+        AddString(String.Concat(searchType, "\n"));
+        AddString(String.Concat("Nodes Searched: ", nodesSearced));
+        AddString("\n");
+        AddString(String.Concat(Enumerable.Repeat("-", 80)));
+
         MyRefresh();
     }
 

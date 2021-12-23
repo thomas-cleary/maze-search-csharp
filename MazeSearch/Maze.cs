@@ -4,6 +4,7 @@ public class Maze
     public int[,] maze;
     public int    numRows;
     public int    numCols;
+    
 
     public (int row, int column) goal;
     public (int row, int column) currentPosition;
