@@ -27,16 +27,16 @@ class Program
             maze.Setup(Constants.MazeDensity);
 
             Maze unsearchedMaze = maze.DeepCopy();
-            Search.Astar(unsearchedMaze);
+            Search.BFS(unsearchedMaze);
             Display.MySleep(Constants.IntermissionTime);
             
-            // unsearchedMaze = maze.DeepCopy();
-            // Search.DFS(unsearchedMaze);
-            // Display.MySleep(Constants.IntermissionTime);
+            unsearchedMaze = maze.DeepCopy();
+            Search.DFS(unsearchedMaze);
+            Display.MySleep(Constants.IntermissionTime);
 
-            // unsearchedMaze = maze.DeepCopy();
-            // Search.Astar(unsearchedMaze);
-            // Display.MySleep(Constants.IntermissionTime);
+            unsearchedMaze = maze.DeepCopy();
+            Search.Astar(unsearchedMaze);
+            Display.MySleep(Constants.IntermissionTime);
         }
     }
 

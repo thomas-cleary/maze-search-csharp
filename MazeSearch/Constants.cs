@@ -4,7 +4,7 @@ using System;
 public static class Constants
 {
     public const int NumSims = 10;
-    public const int AnimationSpeed   = 10; // milliseconds
+    public const int AnimationSpeed   = 1; // milliseconds
     public const int IntermissionTime = 2000; // milliseconds
 
     public const int NumRows = 32;
