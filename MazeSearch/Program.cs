@@ -27,17 +27,22 @@ class Program
             maze.Setup(Constants.MazeDensity);
 
             Maze unsearchedMaze = maze.DeepCopy();
-            Search.BFS(unsearchedMaze);
-            Display.MySleep(Constants.IntermissionTime);
-            
-            unsearchedMaze = maze.DeepCopy();
-            Search.DFS(unsearchedMaze);
+            bool goalReachable = Search.Astar(unsearchedMaze);
             Display.MySleep(Constants.IntermissionTime);
 
-            unsearchedMaze = maze.DeepCopy();
-            Search.Astar(unsearchedMaze);
-            Display.MySleep(Constants.IntermissionTime);
+            if (goalReachable)
+            {
+                unsearchedMaze = maze.DeepCopy();
+                Search.BFS(unsearchedMaze);
+                Display.MySleep(Constants.IntermissionTime);
+                
+                unsearchedMaze = maze.DeepCopy();
+                Search.DFS(unsearchedMaze);
+                Display.MySleep(Constants.IntermissionTime);
+            }
+            else{
+                i--;
+            }
         }
     }
-
 }

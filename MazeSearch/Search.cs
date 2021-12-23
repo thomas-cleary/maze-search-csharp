@@ -1,8 +1,8 @@
 
-public static class Search
+public class Search
 {
 
-    public static void Astar(Maze maze)
+    public static bool Astar(Maze maze)
     {
         string searchType = "A Star";
 
@@ -91,6 +91,7 @@ public static class Search
             }
             previousNode = currentNode;
         }
+        return goalFound;
     }
 
 
@@ -122,7 +123,7 @@ public static class Search
     }
 
 
-    private static void SearchMaze(Maze maze, string searchType)
+    private static bool SearchMaze(Maze maze, string searchType)
     {
         LinkedList<(int, int)> linkedList = new LinkedList<(int, int)>();
 
@@ -213,5 +214,6 @@ public static class Search
 
             previousNode = currentNode;
         }
+        return goalFound;
     }
 }
