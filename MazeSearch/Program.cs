@@ -43,7 +43,9 @@ class Program
             maze.Setup(Constants.MazeDensity);
 
             Maze unsearchedMaze = maze.DeepCopy();
-
+            Search.DFS(unsearchedMaze, false);
+            
+            unsearchedMaze = maze.DeepCopy();
             Search.BFS(unsearchedMaze, false);
 
             Display.MySleep(Constants.IntermissionTime);
