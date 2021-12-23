@@ -44,10 +44,10 @@ class Program
 
             Maze unsearchedMaze = maze.DeepCopy();
             Search.BFS(unsearchedMaze, false);
+            Display.MySleep(Constants.IntermissionTime);
             
             unsearchedMaze = maze.DeepCopy();
             Search.DFS(unsearchedMaze, false);
-
             Display.MySleep(Constants.IntermissionTime);
         }
     }

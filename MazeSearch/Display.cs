@@ -113,12 +113,12 @@ public class Display
             NCurses.InitPair((short) MazeTileNum.Terminal,         CursesColor.WHITE,  CursesColor.BLACK);   
             NCurses.InitPair((short) MazeTileNum.Undiscovered,     CursesColor.BLACK,  CursesColor.WHITE);   
             NCurses.InitPair((short) MazeTileNum.Wall,             CursesColor.RED,    CursesColor.RED);     
-            NCurses.InitPair((short) MazeTileNum.Goal,             CursesColor.RED,    CursesColor.YELLOW);  
+            NCurses.InitPair((short) MazeTileNum.Goal,             CursesColor.GREEN,    CursesColor.YELLOW);  
             NCurses.InitPair((short) MazeTileNum.CurrentPosition,  CursesColor.YELLOW, CursesColor.BLUE);    
             NCurses.InitPair((short) MazeTileNum.StartingPosition, CursesColor.YELLOW, CursesColor.BLACK);   
             NCurses.InitPair((short) MazeTileNum.Discovered,       CursesColor.BLACK,  CursesColor.GREEN);   
-            NCurses.InitPair((short) MazeTileNum.InQueue,          CursesColor.BLACK,  CursesColor.MAGENTA); 
-            NCurses.InitPair((short) MazeTileNum.GoalInQueue,      CursesColor.YELLOW,  CursesColor.MAGENTA);
+            NCurses.InitPair((short) MazeTileNum.InQueue,          CursesColor.WHITE,  CursesColor.MAGENTA); 
+            NCurses.InitPair((short) MazeTileNum.GoalInQueue,      CursesColor.GREEN,  CursesColor.MAGENTA);
             NCurses.InitPair((short) MazeTileNum.GoalFound,        CursesColor.YELLOW,  CursesColor.BLUE);
 
             return true;
