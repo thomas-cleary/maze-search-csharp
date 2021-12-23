@@ -102,4 +102,9 @@ public static class Search
         }
 
     }
+
+    public static void BFS(Maze maze)
+    {
+        throw new NotImplementedException();
+    }
 }
