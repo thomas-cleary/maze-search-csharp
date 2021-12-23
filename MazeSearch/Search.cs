@@ -42,13 +42,22 @@ public static class Search
             // Get the next tile on the maze we will move to
             (int row, int col) currentNode = queue.Dequeue();
 
-            if (maze.maze[currentNode.row, currentNode.col] == (int) MazeTileNum.Goal)
+            if (maze.maze[currentNode.row, currentNode.col] == (int) MazeTileNum.GoalInQueue)
             {
                 goalFound = true;
             }
 
-            // Mark the dequeued node as the current position on the maze
-            maze.maze[currentNode.row, currentNode.col] = (int) MazeTileNum.CurrentPosition;
+            int currentNodeTileType;
+            // Mark the dequeued node as the current position on the maze if it is not the goal
+            if (maze.maze[currentNode.row, currentNode.col] != (int) MazeTileNum.GoalInQueue)
+            {
+                currentNodeTileType = (int) MazeTileNum.CurrentPosition;
+            }
+            else{
+                currentNodeTileType = (int) MazeTileNum.GoalFound;
+            }
+
+            maze.maze[currentNode.row, currentNode.col] = currentNodeTileType;
             maze.currentPosition = (currentNode.row, currentNode.col);
             
             movesMade++;
@@ -74,6 +83,10 @@ public static class Search
                 if (maze.maze[neighbour.row, neighbour.col] != (int) MazeTileNum.Goal)
                 {
                     maze.maze[neighbour.row, neighbour.col] = (int) MazeTileNum.InQueue;
+                }
+                else
+                {
+                    maze.maze[neighbour.row, neighbour.col] = (int) MazeTileNum.GoalInQueue;
                 }
 
                 if (!debug)
