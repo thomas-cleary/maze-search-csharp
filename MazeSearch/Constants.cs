@@ -7,8 +7,8 @@ public static class Constants
     public const int AnimationSpeed   = 1; // milliseconds
     public const int IntermissionTime = 2000; // milliseconds
 
-    public const int NumRows = 64;
-    public const int NumCols = 128;
+    public const int NumRows = 32;
+    public const int NumCols = 64;
 
     public const double MazeDensity = 0.36;
 
